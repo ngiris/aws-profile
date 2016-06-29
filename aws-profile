@@ -148,6 +148,10 @@ os.unsetenv('AWS_SESSION_TOKEN')
 os.unsetenv('AWS_DEFAULT_PROFILE')
 os.unsetenv('AWS_PROFILE')
 
+#Terraform environment variables
+os.unsetenv('TF_VAR_aws_access_key', creds['access_key'])
+os.unsetenv('TF_VAR_aws_secret_key', creds['secret_key'])
+
 if 'region' in config:
     os.putenv('AWS_DEFAULT_REGION', config['region'])
     os.putenv('AWS_REGION', config['region'])
@@ -155,6 +159,10 @@ if 'region' in config:
 os.putenv('AWS_ACCESS_KEY_ID', creds['access_key'])
 os.putenv('AWS_SECRET_ACCESS_KEY', creds['secret_key'])
 os.putenv('AWS_SESSION_TOKEN', creds['session_token'])
+
+#Terraform environment variables
+os.putenv('TF_VAR_aws_access_key', creds['access_key'])
+os.putenv('TF_VAR_aws_secret_key', creds['secret_key'])
 
 my_env = os.environ.copy()
 command_status = os.system(command)
