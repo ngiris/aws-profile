@@ -158,4 +158,14 @@ os.putenv('AWS_SESSION_TOKEN', creds['session_token'])
 
 my_env = os.environ.copy()
 command_status = os.system(command)
-exit(os.WEXITSTATUS(command_status))
+if os.name == 'nt':
+    # On Windows, os.WEXITSTATUS() doesn't work and os.system() returns
+    # the argument to exit() directly.
+    exit(command_status)
+else:
+    # On Unix, os.WEXITSTATUS() must be used to extract the exit status
+    # from the result of os.system().
+    if os.WIFEXITED(command_status):
+        exit(os.WEXITSTATUS(command_status))
+    else:
+        exit(-1)
