@@ -149,8 +149,8 @@ os.unsetenv('AWS_DEFAULT_PROFILE')
 os.unsetenv('AWS_PROFILE')
 
 #Terraform environment variables
-os.unsetenv('TF_VAR_aws_access_key', creds['access_key'])
-os.unsetenv('TF_VAR_aws_secret_key', creds['secret_key'])
+os.unsetenv('TF_VAR_aws_access_key')
+os.unsetenv('TF_VAR_aws_secret_key')
 
 if 'region' in config:
     os.putenv('AWS_DEFAULT_REGION', config['region'])
